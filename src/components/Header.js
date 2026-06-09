@@ -7,10 +7,11 @@ function Header() {
   return (
     <header id="header">
       <div id="top-bar">
-        <div className="container">
+        {/* <div className="container"> */}
+        <div className="container d-flex align-items-center justify-content-end">
           <ul id="top-buttons">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="/">Login</a></li>
+            <li><a href="/">Register</a></li>
             <li className="divider"></li>
                 <li>
                   <div className="language-switcher">
@@ -28,6 +29,7 @@ function Header() {
       </div>
       <div id="nav-section">
         <div className="container">
+       
 
           <a href="/" className="nav-logo">
             <img src={logo} alt="One Ring Rentals" />
@@ -47,12 +49,14 @@ function Header() {
                   </form>
                 </div>
           <nav className="navbar">
-            <ul className="nav navbar-nav">
-              <li><a href="/">Find a Rental</a></li>
-              <li><a href="/articles">Recent Articles</a></li>
-              <li><a href="/regions">Regions</a></li>
-              <li><a href="/news">News</a></li>
-              <li><a href="/contact">Contact</a></li>
+            {/* <ul className="nav navbar-nav d-flex mb-0"> */}
+            <ul className="nav navbar-nav d-flex flex-row mb-0 gap-3">
+              <li className="nav-item"><a className="nav-link" href="/">Find a Rental</a></li>
+              {/* <li><a href="#">List your rental</a></li> */}
+              <li className="nav-item"><a className="nav-link" href="/articles">Recent Articles</a></li>
+              <li className="nav-item"><a className="nav-link" href="/regions">Regions</a></li>
+              <li className="nav-item"><a className="nav-link" href="/news">News</a></li>
+              <li className="nav-item"><a className="nav-link" href="/contact">Contact</a></li>
             </ul>
           </nav>
         </div>
