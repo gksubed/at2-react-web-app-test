@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link for routing
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/style.css";
 import slide1 from "../assets/images/patterns/pattern8.jpg";
 import slide2 from "../assets/images/AjaxLoader.jpg";
-
 
 const slides = [
   {
@@ -28,116 +28,73 @@ function Slider() {
   // Auto Slide
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) =>
-        prev === slides.length - 1 ? 0 : prev + 1
-      );
+      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 5000);
 
     return () => clearInterval(timer);
   }, []);
 
-  // Previous Slide
   const prevSlide = (e) => {
     e.preventDefault();
-
-    setCurrent((prev) =>
-      prev === 0 ? slides.length - 1 : prev - 1
-    );
+    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
-  // Next Slide
   const nextSlide = (e) => {
     e.preventDefault();
-
-    setCurrent((prev) =>
-      prev === slides.length - 1 ? 0 : prev + 1
-    );
+    setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
   return (
     <>
       {/* BEGIN HOME SLIDER SECTION */}
-      <div
-        id="carousel-example-generic"
-        className="carousel slide"
-      >
-
+      <div id="carousel-example-generic" className="carousel slide">
+        
         {/* Wrapper for slides */}
-        <div
-          className="carousel-inner"
-          role="listbox"
-        >
-
+        <div className="carousel-inner" role="listbox">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              id={slide.id}
-              className={`item ${
-                index === current ? "active" : ""
-              }`}
+              // 'item' to 'carousel-item' for modern Bootstrap compatibility
+              className={`carousel-item ${index === current ? "active" : ""}`}
               style={{
                 background: `url(${slide.image}) no-repeat left center`,
                 backgroundSize: "cover",
                 height: "605px",
-                display:
-                  index === current ? "block" : "none",
+                display: index === current ? "block" : "none",
                 position: "relative",
               }}
             >
-
-              {/* Ready for JS Injection */}
               <div className="carousel-caption">
-
-                <div className="caption sfr slider-title">
-                  {slide.title}
-                </div>
-
-                <div className="caption sfl slider-subtitle">
-                  {slide.subtitle}
-                </div>
-
-                <a
-                  href={slide.link}
-                  className="caption sfb btn btn-default btn-lg"
-                >
+                <div className="caption sfr slider-title">{slide.title}</div>
+                <div className="caption sfl slider-subtitle">{slide.subtitle}</div>
+                
+                {/*Changed <a> to <Link> to avoid full-page reloads */}
+                <Link to={slide.link} className="caption sfb btn btn-default btn-lg">
                   Learn More
-                </a>
-
+                </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Blue Filter */}
-        {/* <div id="home-search-section"></div> */}
-
         {/* Controls */}
-        <a
-          className="left carousel-control"
-          href="#carousel-example-generic"
-          role="button"
+        <button
+          className="carousel-control-prev"
+          type="button"
           onClick={prevSlide}
         >
-          <span className="glyphicon glyphicon-chevron-left"></span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
 
-          <span className="sr-only">
-            Previous
-          </span>
-        </a>
-
-        <a
-          className="right carousel-control"
-          href="#carousel-example-generic"
-          role="button"
+        <button
+          className="carousel-control-next"
+          type="button"
           onClick={nextSlide}
         >
-          <span className="glyphicon glyphicon-chevron-right"></span>
-
-          <span className="sr-only">
-            Next
-          </span>
-        </a>
-
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
       {/* END HOME SLIDER SECTION */}
     </>
