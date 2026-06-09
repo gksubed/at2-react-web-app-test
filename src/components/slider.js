@@ -1,4 +1,33 @@
-<!-- BEGIN HOME SLIDER SECTION -->
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../assets/css/style.css";
+import slide1 from "../assets/images/patterns/pattern8.jpg";
+import slide2 from "../assets/images/AjaxLoader.jpg";
+const slides = [
+  {
+    id: 1,
+    image: slide1,
+     title: "Breathtaking views",
+    subtitle: "Relaxation in the Bay of Belfalas",
+    link: "/regions",
+  },
+  {
+    id: 2,
+    image: slide2,
+    title: "The simple life",
+    subtitle: "Lush gardens in Mordor",
+    link: "/articles",
+  },
+];
+
+
+  return (
+    <>
+      {/* BEGIN HOME SLIDER SECTION */}
+      <div
+        id="carousel-example-generic"
+        className="carousel slide"
+      ></div>
       <div
         id="carousel-example-generic"
         class="carousel slide"
@@ -76,3 +105,9 @@
         </a>
       </div>
       <!-- END HOME SLIDER SECTION -->
+         {/* END HOME SLIDER SECTION */}
+    </>
+  );
+}
+
+export default Slider;
